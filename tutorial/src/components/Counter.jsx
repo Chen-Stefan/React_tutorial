@@ -8,7 +8,7 @@ class Counter extends Component {
     super(props)
   
     this.state = {
-      count: 0,
+      value: this.props.value,
       tags: []
     }
   }
@@ -24,18 +24,18 @@ class Counter extends Component {
   }
   getBadgeClasses() {
     let classes = 'badge m-2 ';
-    classes += this.state.count === 0 ? 'bg-warning' : 'bg-primary';
+    classes += this.state.value === 0 ? 'bg-warning' : 'bg-primary';
     return classes;
   }
 
   formatCount() {
-    const { count } = this.state;
+    const { value: count } = this.state;
     return count === 0 ? 'Zero' : count;
   }
 
   handleIncrement = product => {
     console.log(product)
-    this.setState({count: this.state.count + 1})
+    this.setState({count: this.state.value + 1})
   }
  
   render() {
