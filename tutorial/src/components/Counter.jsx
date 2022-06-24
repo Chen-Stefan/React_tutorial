@@ -3,11 +3,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import { Button, Badge } from "react-bootstrap";
 
 class Counter extends Component {
-  state = {
-    count: 0,
-    tags: [],
-  };
-
+ 
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      count: 0,
+      tags: [],
+    }
+  }
   renderTags() {
     if (this.state.tags.length === 0) return <p>There are no tags!</p>;
     return (
@@ -18,12 +22,26 @@ class Counter extends Component {
       </ul>
     );
   }
+  getBadgeClasses() {
+    let classes = 'badge m-2 ';
+    classes += this.state.count === 0 ? 'bg-warning' : 'bg-primary';
+    return classes;
+  }
+
+  formatCount() {
+    const { count } = this.state;
+    return count === 0 ? 'Zero' : count;
+  }
+
+  handleIncrement = ()=> {
+    console.log('Increment clicked', this)
+  }
 
   render() {
     return (
       <div>
-        {this.state.tags.length === 0 && 'Please Create a new tag'}
-        {this.renderTags()}
+        <span className= {this.getBadgeClasses()}>{this.formatCount()}</span>
+       <button onClick={this.handleIncrement} className='btn btn-secondary btn-sm'>Increment</button>
       </div>
     );
   }
