@@ -4,15 +4,21 @@ import {Button, Badge} from 'react-bootstrap'
 
 class Counter extends Component {
   state = {
-    count: 0,
+    count: 0
   };
   render() {
     return (
       <div>
-        <span style = {{fontSize: 30}}className="badge bg-primary">{this.formatCount()}</span>
+        <span className= {this.getBadgeClasses()}>{this.formatCount()}</span>
         <button className="btn btn-secondary btn-sm">Increment</button>
       </div>
     );
+  }
+
+  getBadgeClasses() {
+    let classes = 'badge m-2 ';
+    classes += this.state.count === 0 ? 'bg-warning' : 'bg-primary';
+    return classes;
   }
 
   formatCount() {
