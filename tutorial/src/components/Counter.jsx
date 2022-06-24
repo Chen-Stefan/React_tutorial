@@ -29,18 +29,22 @@ class Counter extends Component {
   }
 
   formatCount() {
-    const { value: count } = this.state;
-    return count === 0 ? 'Zero' : count;
+    const { value } = this.state;
+    return value === 0 ? 'Zero' : value;
   }
 
   handleIncrement = product => {
     console.log(product)
-    this.setState({count: this.state.value + 1})
+    this.setState({value: this.state.value + 1})
   }
  
   render() {
+    console.log(this.props)
+
     return (
       <div>
+        {/* 这里的this.props.children就是两个Counter tag中间的h4 tag */}
+        <h4>Counter #{this.props.id}</h4>
         <span className= {this.getBadgeClasses()}>{this.formatCount()}</span>
        <button onClick={(product) => this.handleIncrement(product)} className='btn btn-secondary btn-sm'>Increment</button>
       </div>
